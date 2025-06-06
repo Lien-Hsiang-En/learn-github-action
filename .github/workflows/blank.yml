@@ -55,5 +55,8 @@ jobs:
           echo test, and deploy your project.
           ls
 
-      - name: test
-        run: sudo apt update
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
+        with:
+          detached: true
